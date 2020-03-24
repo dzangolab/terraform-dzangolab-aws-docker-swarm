@@ -16,26 +16,26 @@ This terraform module creates a Docker Swarm cluster using AWS EC2 instances. It
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:-----:|
 | ami | Ubuntu Server 18.04 LTS AMI | `string` | `"ami-0dad20bd1b9c8c004"` | no |
-| aws\_profile | n/a | `any` | n/a | yes |
-| aws\_region | n/a | `string` | `"ap-southeast-1"` | no |
+| aws\_profile | The AWS profile to use | `string` | `"default"` | no |
+| aws\_region | The AWS region in which to provision resources | `string` | `"ap-southeast-1"` | no |
 | connection\_timeout | Timeout for connection to servers | `string` | `"2m"` | no |
 | eip\_address | The Elastic IP address to be attached to first manager | `any` | n/a | yes |
 | eip\_allocation\_id | The allocation ID of the Elastic IP address | `any` | n/a | yes |
-| enable\_efs | n/a | `bool` | `false` | no |
-| enable\_gluster | n/a | `bool` | `false` | no |
-| env | n/a | `any` | n/a | yes |
-| gluster\_volume\_size | n/a | `number` | `1` | no |
+| enable\_efs | Set to true in order to enable EFS | `bool` | `false` | no |
+| enable\_gluster | Set to true in order to enable gluster | `bool` | `false` | no |
+| env | The environment of the current deployment | `any` | n/a | yes |
+| gluster\_volume\_size | Size of the gluster volume | `number` | `1` | no |
 | key\_pair\_name | The name for the key pair | `any` | n/a | yes |
-| key\_path | SSH public key path | `string` | `"~/.ssh/id_rsa.pub"` | no |
+| key\_path | SSH public key path for key pair | `string` | `"~/.ssh/id_rsa.pub"` | no |
 | manager\_instance\_type | Manager instance type | `string` | `"t2.micro"` | no |
 | ssh\_public\_keys | SSH public keys to add to instances | `string` | n/a | yes |
-| ssh\_user | n/a | `string` | `"ubuntu"` | no |
+| ssh\_user | User for logging into nodes (ansible) | `string` | `"ubuntu"` | no |
 | subnet\_main\_cidr | n/a | `string` | `"192.168.0.0/24"` | no |
-| swarm\_manager\_count | n/a | `number` | `1` | no |
-| swarm\_manager\_name | n/a | `string` | `"manager"` | no |
+| swarm\_manager\_count | Number of manager nodes | `number` | `1` | no |
+| swarm\_manager\_name | Name to use for naming manager nodes | `string` | `"manager"` | no |
 | swarm\_name | n/a | `any` | n/a | yes |
-| swarm\_worker\_count | n/a | `number` | `1` | no |
-| swarm\_worker\_name | n/a | `string` | `"worker"` | no |
+| swarm\_worker\_count | Number of worker nodes | `number` | `1` | no |
+| swarm\_worker\_name | Name to use for naming worker nodes | `string` | `"worker"` | no |
 | vpc\_cidr | n/a | `string` | `"192.168.0.0/24"` | no |
 | worker\_instance\_type | Worker instance type | `string` | `"t2.micro"` | no |
 

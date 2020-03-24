@@ -3,13 +3,13 @@
 //-------------------------------------------------------------------
 
 variable "aws_profile" {
-  description = "The AWS peofile to use"
-  default = "default"
+  description = "The AWS profile to use"
+  default     = "default"
 }
 
 variable "aws_region" {
   description = "The AWS region in which to provision resources"
-  default = "ap-southeast-1"
+  default     = "ap-southeast-1"
 }
 
 variable "env" {
@@ -49,7 +49,7 @@ variable "ssh_public_keys" {
 
 variable "ssh_user" {
   description = "User for logging into nodes (ansible)"
-  default = "ubuntu"
+  default     = "ubuntu"
 }
 
 //-------------------------------------------------------------------
@@ -72,12 +72,12 @@ variable "subnet_main_cidr" {
 
 variable "swarm_manager_count" {
   description = "Number of manager nodes"
-  default = 1
+  default     = 1
 }
 
 variable "swarm_manager_name" {
   description = "Name to use for naming manager nodes"
-  default = "manager"
+  default     = "manager"
 }
 
 variable "swarm_name" {
@@ -85,12 +85,12 @@ variable "swarm_name" {
 
 variable "swarm_worker_count" {
   description = "Number of worker nodes"
-  default = 1
+  default     = 1
 }
 
 variable "swarm_worker_name" {
   description = "Name to use for naming worker nodes"
-  default = "worker"
+  default     = "worker"
 }
 
 variable "vpc_cidr" {
@@ -107,7 +107,8 @@ variable "worker_instance_type" {
 //-------------------------------------------------------------------
 
 variable "enable_efs" {
-  default = false
+  description = "Set to true in order to enable EFS"
+  default     = false
 }
 
 //-------------------------------------------------------------------
@@ -115,9 +116,11 @@ variable "enable_efs" {
 //-------------------------------------------------------------------
 
 variable "enable_gluster" {
-  default = false
+  description = "Set to true in order to enable gluster"
+  default     = false
 }
 
 variable "gluster_volume_size" {
-  default = 1
+  description = "Size of the gluster volume"
+  default     = 1
 }
