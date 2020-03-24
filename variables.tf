@@ -3,13 +3,17 @@
 //-------------------------------------------------------------------
 
 variable "aws_profile" {
+  description = "The AWS peofile to use"
+  default = "default"
 }
 
 variable "aws_region" {
+  description = "The AWS region in which to provision resources"
   default = "ap-southeast-1"
 }
 
 variable "env" {
+  description = "The environment of the current deployment"
 }
 
 variable "eip_allocation_id" {
@@ -34,16 +38,17 @@ variable "key_pair_name" {
 }
 
 variable "key_path" {
-  description = "SSH public key path"
+  description = "SSH public key path for key pair"
   default     = "~/.ssh/id_rsa.pub"
 }
 
 variable "ssh_public_keys" {
-  type        = string
   description = "SSH public keys to add to instances"
+  type        = string
 }
 
 variable "ssh_user" {
+  description = "User for logging into nodes (ansible)"
   default = "ubuntu"
 }
 
@@ -53,12 +58,12 @@ variable "ssh_user" {
 
 variable "ami" {
   description = "Ubuntu Server 18.04 LTS AMI"
-  default = "ami-0dad20bd1b9c8c004"
+  default     = "ami-0dad20bd1b9c8c004"
 }
 
 variable "manager_instance_type" {
   description = "Manager instance type"
-  default = "t2.micro"
+  default     = "t2.micro"
 }
 
 variable "subnet_main_cidr" {
@@ -66,10 +71,12 @@ variable "subnet_main_cidr" {
 }
 
 variable "swarm_manager_count" {
+  description = "Number of manager nodes"
   default = 1
 }
 
 variable "swarm_manager_name" {
+  description = "Name to use for naming manager nodes"
   default = "manager"
 }
 
@@ -77,10 +84,12 @@ variable "swarm_name" {
 }
 
 variable "swarm_worker_count" {
+  description = "Number of worker nodes"
   default = 1
 }
 
 variable "swarm_worker_name" {
+  description = "Name to use for naming worker nodes"
   default = "worker"
 }
 
@@ -90,7 +99,7 @@ variable "vpc_cidr" {
 
 variable "worker_instance_type" {
   description = "Worker instance type"
-  default = "t2.micro"
+  default     = "t2.micro"
 }
 
 //-------------------------------------------------------------------
