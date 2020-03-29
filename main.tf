@@ -128,10 +128,11 @@ resource "aws_instance" "manager" {
   }
 
   connection {
-    host    = coalesce(self.public_ip, self.private_ip)
-    type    = "ssh"
-    user    = var.ssh_user
-    timeout = var.connection_timeout
+    host        = coalesce(self.public_ip, self.private_ip)
+    private_key = file(var.key_path)
+    type        = "ssh"
+    user        = var.ssh_user
+    timeout     = var.connection_timeout
   }
 
   provisioner "remote-exec" {
