@@ -58,7 +58,7 @@ variable "ssh_user" {
 
 variable "ami" {
   description = "Ubuntu Server 18.04 LTS AMI"
-  default     = "ami-09a4a9ce71ff3f20b"
+  default     = "ami-07f4cb4629342979c"
 }
 
 variable "manager_instance_type" {
