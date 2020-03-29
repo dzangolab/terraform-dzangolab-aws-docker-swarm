@@ -58,12 +58,12 @@ variable "ssh_user" {
 
 variable "ami" {
   description = "Ubuntu Server 18.04 LTS AMI"
-  default     = "ami-0dad20bd1b9c8c004"
+  default     = "ami-09a4a9ce71ff3f20b"
 }
 
 variable "manager_instance_type" {
   description = "Manager instance type"
-  default     = "t2.micro"
+  default     = "t3a.large"
 }
 
 variable "subnet_main_cidr" {
@@ -99,7 +99,7 @@ variable "vpc_cidr" {
 
 variable "worker_instance_type" {
   description = "Worker instance type"
-  default     = "t2.micro"
+  default     = "t3a.large"
 }
 
 //-------------------------------------------------------------------
