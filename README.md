@@ -15,7 +15,7 @@ This terraform module creates a Docker Swarm cluster using AWS EC2 instances. It
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:-----:|
-| ami | Ubuntu Server 18.04 LTS AMI | `string` | `"ami-0dad20bd1b9c8c004"` | no |
+| ami | Ubuntu Server 18.04 LTS AMI | `string` | `"ami-09a4a9ce71ff3f20b"` | no |
 | aws\_profile | The AWS profile to use | `string` | `"default"` | no |
 | aws\_region | The AWS region in which to provision resources | `string` | `"ap-southeast-1"` | no |
 | connection\_timeout | Timeout for connection to servers | `string` | `"2m"` | no |
@@ -27,7 +27,7 @@ This terraform module creates a Docker Swarm cluster using AWS EC2 instances. It
 | gluster\_volume\_size | Size of the gluster volume | `number` | `1` | no |
 | key\_pair\_name | The name for the key pair | `any` | n/a | yes |
 | key\_path | SSH public key path for key pair | `string` | `"~/.ssh/id_rsa.pub"` | no |
-| manager\_instance\_type | Manager instance type | `string` | `"t2.micro"` | no |
+| manager\_instance\_type | Manager instance type | `string` | `"t3a.large"` | no |
 | ssh\_public\_keys | SSH public keys to add to instances | `string` | n/a | yes |
 | ssh\_user | User for logging into nodes (ansible) | `string` | `"ubuntu"` | no |
 | subnet\_main\_cidr | n/a | `string` | `"192.168.0.0/24"` | no |
@@ -37,7 +37,7 @@ This terraform module creates a Docker Swarm cluster using AWS EC2 instances. It
 | swarm\_worker\_count | Number of worker nodes | `number` | `1` | no |
 | swarm\_worker\_name | Name to use for naming worker nodes | `string` | `"worker"` | no |
 | vpc\_cidr | n/a | `string` | `"192.168.0.0/24"` | no |
-| worker\_instance\_type | Worker instance type | `string` | `"t2.micro"` | no |
+| worker\_instance\_type | Worker instance type | `string` | `"t3a.large"` | no |
 
 ## Outputs
 
