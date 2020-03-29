@@ -15,7 +15,7 @@ This terraform module creates a Docker Swarm cluster using AWS EC2 instances. It
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:-----:|
-| ami | Ubuntu Server 18.04 LTS AMI | `string` | `"ami-09a4a9ce71ff3f20b"` | no |
+| ami | Ubuntu Server 18.04 LTS AMI | `string` | `"ami-07f4cb4629342979c"` | no |
 | aws\_profile | The AWS profile to use | `string` | `"default"` | no |
 | aws\_region | The AWS region in which to provision resources | `string` | `"ap-southeast-1"` | no |
 | connection\_timeout | Timeout for connection to servers | `string` | `"2m"` | no |
