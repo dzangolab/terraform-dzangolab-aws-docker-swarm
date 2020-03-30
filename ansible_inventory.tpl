@@ -1,3 +1,5 @@
+${efs_host}
+
 [docker_swarm_manager]
 ${managers}
 
@@ -10,5 +12,3 @@ ${manager_private_ips}
 [${env}:children]
 docker_swarm_manager
 docker_swarm_worker
-
-${efs_host}
