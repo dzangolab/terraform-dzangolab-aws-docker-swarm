@@ -1,3 +1,5 @@
+${efs_host}
+
 [docker_swarm_manager]
 ${managers}
 
@@ -17,5 +19,3 @@ docker_swarm_worker
 
 [swarm:vars]
 ansible_python_interpreter=/usr/bin/python3
-
-${efs_host}
