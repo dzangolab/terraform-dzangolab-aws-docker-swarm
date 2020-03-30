@@ -58,12 +58,12 @@ variable "ssh_user" {
 
 variable "ami" {
   description = "Ubuntu Server 18.04 LTS AMI"
-  default     = "ami-07f4cb4629342979c"
+  default     = "ami-09a4a9ce71ff3f20b"
 }
 
 variable "availability_zone" {
   description = "The availability zone in which to create EC2 instances"
-  default     = "ap-southeast-1c"
+  default     = "ap-southeast-1a"
 }
 
 variable "manager_instance_type" {
