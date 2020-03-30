@@ -110,6 +110,7 @@ resource "aws_efs_mount_target" "main" {
 
 resource "aws_instance" "manager" {
   ami                         = var.ami
+  availability_zone           = var.availability_zone
   count                       = var.swarm_manager_count
   instance_type               = var.manager_instance_type
   key_name                    = aws_key_pair.default.id
@@ -145,6 +146,7 @@ resource "aws_instance" "manager" {
 
 resource "aws_instance" "worker" {
   ami                         = var.ami
+  availability_zone           = var.availability_zone
   count                       = var.swarm_worker_count
   instance_type               = var.worker_instance_type
   key_name                    = aws_key_pair.default.id

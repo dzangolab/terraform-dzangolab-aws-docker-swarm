@@ -61,6 +61,11 @@ variable "ami" {
   default     = "ami-07f4cb4629342979c"
 }
 
+variable "availability_zone" {
+  description = "The availability zone in which to create EC2 instances"
+  default     = "ap-southeast-1c"
+}
+
 variable "manager_instance_type" {
   description = "Manager instance type"
   default     = "t3a.large"
