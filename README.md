@@ -17,10 +17,7 @@ This terraform module creates a Docker Swarm cluster using AWS EC2 instances. It
 |------|-------------|------|---------|:-----:|
 | ami | Ubuntu Server 18.04 LTS AMI | `string` | `"ami-09a4a9ce71ff3f20b"` | no |
 | availability\_zone | The availability zone in which to create EC2 instances | `string` | `"ap-southeast-1a"` | no |
-| aws\_profile | The AWS profile to use | `string` | `"default"` | no |
-| aws\_region | The AWS region in which to provision resources | `string` | `"ap-southeast-1"` | no |
 | connection\_timeout | Timeout for connection to servers | `string` | `"2m"` | no |
-| eip\_address | The Elastic IP address to be attached to first manager | `any` | n/a | yes |
 | eip\_allocation\_id | The allocation ID of the Elastic IP address | `any` | n/a | yes |
 | enable\_efs | Set to true in order to enable EFS | `bool` | `false` | no |
 | enable\_gluster | Set to true in order to enable gluster | `bool` | `false` | no |
