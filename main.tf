@@ -196,7 +196,7 @@ locals {
     length(local.list_with_first_ip_in_front),
   )
 
-  elastic_ip_list = [var.eip_address]
+  elastic_ip_list = [${eip_association.public_ip}]
 
   manager_public_ip_list = concat(local.elastic_ip_list, local.list_without_first_ip)
 }
@@ -226,5 +226,5 @@ resource "null_resource" "ansible_inventory_file" {
     command = "echo \"${data.template_file.ansible_inventory.rendered}\" > \"${var.env}\".yml"
   }
 
-  depends_on = [${eip_association.id}]
+  depends_on = [${eip_association.assocation_id}]
 }
