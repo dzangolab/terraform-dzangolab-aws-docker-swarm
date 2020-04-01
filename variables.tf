@@ -2,26 +2,12 @@
 // General settings
 //-------------------------------------------------------------------
 
-variable "aws_profile" {
-  description = "The AWS profile to use"
-  default     = "default"
-}
-
-variable "aws_region" {
-  description = "The AWS region in which to provision resources"
-  default     = "ap-southeast-1"
-}
-
 variable "env" {
   description = "The environment of the current deployment"
 }
 
 variable "eip_allocation_id" {
   description = "The allocation ID of the Elastic IP address"
-}
-
-variable "eip_address" {
-  description = "The Elastic IP address to be attached to first manager"
 }
 
 //-------------------------------------------------------------------
