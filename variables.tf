@@ -20,10 +20,6 @@ variable "eip_allocation_id" {
   description = "The allocation ID of the Elastic IP address"
 }
 
-variable "eip_address" {
-  description = "The Elastic IP address to be attached to first manager"
-}
-
 //-------------------------------------------------------------------
 // Connection settings
 //-------------------------------------------------------------------
