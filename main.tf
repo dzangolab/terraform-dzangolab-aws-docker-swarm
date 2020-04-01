@@ -181,27 +181,9 @@ resource "aws_instance" "worker" {
   }
 }
 
-data "template_file" "elastic_ip_script" {
-  template = file("${path.module}/setup_elastic_ip.tpl")
-
-  vars = {
-    aws_profile        = var.aws_profile
-    aws_region         = var.aws_region
-    eip_allocation_id  = var.eip_allocation_id
-    instance_id        = aws_instance.manager[0].id
-    private_ip_address = aws_instance.manager[0].private_ip
-  }
-}
-
-resource "null_resource" "elastic_ip_association" {
-  triggers = {
-    managers = join("\n", aws_instance.manager.*.public_ip)
-    workers  = join("\n", aws_instance.worker.*.public_ip)
-  }
-
-  provisioner "local-exec" {
-    command = data.template_file.elastic_ip_script.rendered
-  }
+resource "aws_eip_association" "eip_association" {
+  instance_id = aws_instance.manager[0].id
+  allocation_id = var.eip_allocation_id
 }
 
 locals {
