@@ -226,5 +226,5 @@ resource "null_resource" "ansible_inventory_file" {
     command = "echo \"${data.template_file.ansible_inventory.rendered}\" > \"${var.env}\".yml"
   }
 
-  depends_on = [null_resource.elastic_ip_association]
+  depends_on = [eip_association]
 }
