@@ -196,7 +196,7 @@ locals {
     length(local.list_with_first_ip_in_front),
   )
 
-  elastic_ip_list = ["${eip_association.public_ip}"]
+  elastic_ip_list = [eip_association.public_ip]
 
   manager_public_ip_list = concat(local.elastic_ip_list, local.list_without_first_ip)
 }
