@@ -182,7 +182,7 @@ resource "aws_instance" "worker" {
 }
 
 resource "aws_eip_association" "eip_association" {
-  instance_id = aws_instance.manager[0].id
+  instance_id   = aws_instance.manager[0].id
   allocation_id = var.eip_allocation_id
 }
 
