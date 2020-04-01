@@ -45,6 +45,7 @@ variable "key_path" {
 variable "ssh_public_keys" {
   description = "SSH public keys to add to instances"
   type        = string
+  default     = ""
 }
 
 variable "ssh_user" {

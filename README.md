@@ -29,7 +29,7 @@ This terraform module creates a Docker Swarm cluster using AWS EC2 instances. It
 | key\_pair\_name | The name for the key pair | `any` | n/a | yes |
 | key\_path | SSH public key path for key pair | `string` | `"~/.ssh/id_rsa.pub"` | no |
 | manager\_instance\_type | Manager instance type | `string` | `"t3a.large"` | no |
-| ssh\_public\_keys | SSH public keys to add to instances | `string` | n/a | yes |
+| ssh\_public\_keys | SSH public keys to add to instances | `string` | `""` | no |
 | ssh\_user | User for logging into nodes (ansible) | `string` | `"ubuntu"` | no |
 | subnet\_main\_cidr | n/a | `string` | `"192.168.0.0/24"` | no |
 | swarm\_manager\_count | Number of manager nodes | `number` | `1` | no |
