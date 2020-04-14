@@ -26,8 +26,10 @@ resource "aws_vpc" "main" {
 }
 
 resource "aws_subnet" "main" {
-  availability_zone = var.availability_zone
-  cidr_block        = var.subnet_main_cidr
+  count             = length(var.subnets)
+  availability_zone = element(keys(var.subnets), count.index)
+  cidr_block        = element(values(var.subnets), count.index)
+  map_public_ip_on_launch = true
   vpc_id            = aws_vpc.main.id
 
   tags = {
@@ -75,7 +77,8 @@ resource "aws_main_route_table_association" "main_route" {
 }
 
 resource "aws_route_table_association" "route" {
-  subnet_id      = aws_subnet.main.id
+  count          = length(var.subnets)
+  subnet_id      = element(aws_subnet.main.*.id, count.index)
   route_table_id = aws_route_table.public_route_table.id
 }
 
@@ -103,19 +106,19 @@ resource "aws_efs_file_system" "main" {
 }
 
 resource "aws_efs_mount_target" "main" {
-  count           = var.enable_efs ? 1 : 0
+  count           = var.enable_efs ? length(var.subnets) : 0
   file_system_id  = aws_efs_file_system.main[0].id
-  subnet_id       = aws_subnet.main.id
+  subnet_id       = element(aws_subnet.main.*.id, count.index)
   security_groups = [aws_security_group.efs[0].id]
 }
 
 resource "aws_instance" "manager" {
   ami                         = var.ami
-  availability_zone           = var.availability_zone
+  availability_zone           = element(keys(var.subnets), count.index)
   count                       = var.swarm_manager_count
   instance_type               = var.manager_instance_type
   key_name                    = aws_key_pair.default.id
-  subnet_id                   = aws_subnet.main.id
+  subnet_id                   = element(aws_subnet.main.*.id, count.index)
   associate_public_ip_address = true
   vpc_security_group_ids      = local.security_groups
 
@@ -147,11 +150,11 @@ resource "aws_instance" "manager" {
 
 resource "aws_instance" "worker" {
   ami                         = var.ami
-  availability_zone           = var.availability_zone
+  availability_zone           = element(keys(var.subnets), count.index)
   count                       = var.swarm_worker_count
   instance_type               = var.worker_instance_type
   key_name                    = aws_key_pair.default.id
-  subnet_id                   = aws_subnet.main.id
+  subnet_id                   = element(aws_subnet.main.*.id, count.index)
   associate_public_ip_address = true
   vpc_security_group_ids      = local.security_groups
 
@@ -209,7 +212,7 @@ data "template_file" "ansible_inventory" {
     managers            = join("\n", local.manager_public_ip_list)
     workers             = join("\n", aws_instance.worker.*.public_ip)
     manager_private_ips = join("\n", aws_instance.manager.*.private_ip)
-    efs_host            = var.enable_efs ? "efs dns_name=${aws_efs_mount_target.main[0].dns_name}" : ""
+    efs_host            = var.enable_efs ? "efs dns_name=${aws_efs_file_system.main[0].dns_name}" : ""
   }
   # managers = "${join("\n", "${var.eip_allocation_id == "null" ? aws_instance.manager.*.public_ip : local.manager_public_ip_list}")}"
   # Conditional operator on list  will be supported on Terraform 0.12. See issue https://github.com/hashicorp/terraform/issues/18259#issuecomment-434809754

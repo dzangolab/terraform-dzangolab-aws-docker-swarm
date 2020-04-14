@@ -62,6 +62,17 @@ variable "subnet_main_cidr" {
   default = "192.168.0.0/24"
 }
 
+variable "subnets" {
+  description = "A map of availability zones to CIDR blocks, which will be set up as subnets."
+  type = map(string)
+
+  default = {
+    ap-southeast-1a = "192.168.0.0/26"
+    ap-southeast-1b = "192.168.0.64/26"
+    ap-southeast-1c = "192.168.0.128/26"
+  }
+}
+
 variable "swarm_manager_count" {
   description = "Number of manager nodes"
   default     = 1

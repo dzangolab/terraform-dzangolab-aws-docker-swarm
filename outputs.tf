@@ -1,6 +1,6 @@
 output "efs_dns_name" {
   description = "DNS name of the provisioned AWS EFS"
-  value       = aws_efs_mount_target.main.*.dns_name
+  value       = aws_efs_file_system.main[0].dns_name
 }
 
 output "swarm_manager_ips" {
