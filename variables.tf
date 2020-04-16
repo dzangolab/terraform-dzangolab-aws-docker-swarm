@@ -64,7 +64,7 @@ variable "subnet_main_cidr" {
 
 variable "subnets" {
   description = "A map of availability zones to CIDR blocks, which will be set up as subnets."
-  type = map(string)
+  type        = map(string)
 
   default = {
     ap-southeast-1a = "192.168.0.0/26"
@@ -112,6 +112,12 @@ variable "worker_instance_type" {
 variable "enable_efs" {
   description = "Set to true in order to enable EFS"
   default     = false
+}
+
+// Loadbalancer settings
+
+variable "certificate_arn" {
+  description = "ARN of the default SSL certificate on HTTPS listener"
 }
 
 //-------------------------------------------------------------------

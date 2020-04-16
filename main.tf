@@ -26,11 +26,11 @@ resource "aws_vpc" "main" {
 }
 
 resource "aws_subnet" "main" {
-  count             = length(var.subnets)
-  availability_zone = element(keys(var.subnets), count.index)
-  cidr_block        = element(values(var.subnets), count.index)
+  count                   = length(var.subnets)
+  availability_zone       = element(keys(var.subnets), count.index)
+  cidr_block              = element(values(var.subnets), count.index)
   map_public_ip_on_launch = true
-  vpc_id            = aws_vpc.main.id
+  vpc_id                  = aws_vpc.main.id
 
   tags = {
     Name = "${var.swarm_name}-subnet"
