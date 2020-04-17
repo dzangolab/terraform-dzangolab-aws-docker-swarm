@@ -3,7 +3,7 @@ output "efs_dns_name" {
   value       = aws_efs_file_system.main.*.dns_name
 }
 
-output "loadbalancer" {
+output "loadbalancer_dns_name" {
   description = "DNS name of the loadbalancer"
   value       = aws_lb.web.dns_name
 }

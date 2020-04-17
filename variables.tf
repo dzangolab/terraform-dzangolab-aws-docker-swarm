@@ -16,7 +16,7 @@ variable "eip_allocation_id" {
 
 variable "connection_timeout" {
   description = "Timeout for connection to servers"
-  default     = "2m"
+  default     = "5m"
 }
 
 variable "key_pair_name" {
@@ -48,18 +48,9 @@ variable "ami" {
   default     = "ami-09a4a9ce71ff3f20b"
 }
 
-variable "availability_zone" {
-  description = "The availability zone in which to create EC2 instances"
-  default     = "ap-southeast-1a"
-}
-
 variable "manager_instance_type" {
   description = "Manager instance type"
   default     = "t3a.large"
-}
-
-variable "subnet_main_cidr" {
-  default = "192.168.0.0/24"
 }
 
 variable "subnets" {
@@ -130,6 +121,6 @@ variable "enable_gluster" {
 }
 
 variable "gluster_volume_size" {
-  description = "Size of the gluster volume"
+  description = "Size of the gluster volume in GiBs."
   default     = 1
 }

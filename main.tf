@@ -82,10 +82,10 @@ resource "aws_route_table_association" "route" {
   route_table_id = aws_route_table.public_route_table.id
 }
 
-resource "aws_ebs_volume" "ebs_volume" {
-  availability_zone = aws_instance.manager[0].availability_zone
+resource "aws_ebs_volume" "gluster_ebs_volume" {
+  availability_zone = element(aws_instance.manager.*.availability_zone, count.index)
   count             = var.enable_gluster ? var.swarm_manager_count : 0
-  size              = 1
+  size              = var.gluster_volume_size
 }
 
 resource "aws_volume_attachment" "ebs_attachment" {
@@ -93,7 +93,7 @@ resource "aws_volume_attachment" "ebs_attachment" {
   device_name  = "/dev/xvdf"
   force_detach = true
   instance_id  = element(aws_instance.manager.*.id, count.index)
-  volume_id    = element(aws_ebs_volume.ebs_volume.*.id, count.index)
+  volume_id    = element(aws_ebs_volume.gluster_ebs_volume.*.id, count.index)
 }
 
 resource "aws_efs_file_system" "main" {
