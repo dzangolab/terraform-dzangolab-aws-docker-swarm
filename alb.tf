@@ -96,3 +96,37 @@ resource "aws_lb_listener" "web_http" {
     }
   }
 }
+
+resource "aws_globalaccelerator_accelerator" "web" {
+  count           = var.enable_accelerator ? 1 : 0
+  name            = "${var.swarm_name}-accelerator"
+  ip_address_type = "IPV4"
+  enabled         = true
+}
+
+resource "aws_globalaccelerator_listener" "web" {
+  count           = var.enable_accelerator ? 1 : 0
+  accelerator_arn = aws_globalaccelerator_accelerator.web[0].id
+  client_affinity = "NONE"
+  protocol        = "TCP"
+
+  port_range {
+    from_port = 80
+    to_port   = 80
+  }
+
+  port_range {
+    from_port = 443
+    to_port   = 443
+  }
+}
+
+resource "aws_globalaccelerator_endpoint_group" "web" {
+  count        = var.enable_accelerator ? 1 : 0
+  listener_arn = aws_globalaccelerator_listener.web[0].id
+
+  endpoint_configuration {
+    endpoint_id = aws_lb.web.arn
+    weight      = 100
+  }
+}

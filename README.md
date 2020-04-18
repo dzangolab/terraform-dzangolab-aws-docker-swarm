@@ -19,8 +19,9 @@ This terraform module creates a Docker Swarm cluster using AWS EC2 instances. It
 | certificate\_arn | ARN of the default SSL certificate on HTTPS listener | `any` | n/a | yes |
 | connection\_timeout | Timeout for connection to servers | `string` | `"5m"` | no |
 | eip\_allocation\_id | The allocation ID of the Elastic IP address | `any` | n/a | yes |
-| enable\_efs | Set to true in order to enable EFS | `bool` | `false` | no |
-| enable\_gluster | Set to true in order to enable gluster | `bool` | `false` | no |
+| enable\_accelerator | Set to true to enable AWS Global Accelerator | `bool` | `false` | no |
+| enable\_efs | Set to true to enable EFS | `bool` | `false` | no |
+| enable\_gluster | Set to true to enable gluster | `bool` | `false` | no |
 | env | The environment of the current deployment | `any` | n/a | yes |
 | gluster\_volume\_size | Size of the gluster volume in GiBs. | `number` | `1` | no |
 | key\_pair\_name | The name for the key pair | `any` | n/a | yes |

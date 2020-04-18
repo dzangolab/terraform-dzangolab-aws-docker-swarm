@@ -101,7 +101,7 @@ variable "worker_instance_type" {
 //-------------------------------------------------------------------
 
 variable "enable_efs" {
-  description = "Set to true in order to enable EFS"
+  description = "Set to true to enable EFS"
   default     = false
 }
 
@@ -111,12 +111,17 @@ variable "certificate_arn" {
   description = "ARN of the default SSL certificate on HTTPS listener"
 }
 
+variable "enable_accelerator" {
+  description = "Set to true to enable AWS Global Accelerator"
+  default     = false
+}
+
 //-------------------------------------------------------------------
 // Gluster settings
 //-------------------------------------------------------------------
 
 variable "enable_gluster" {
-  description = "Set to true in order to enable gluster"
+  description = "Set to true to enable gluster"
   default     = false
 }
 
