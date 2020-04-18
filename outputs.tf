@@ -3,6 +3,16 @@ output "efs_dns_name" {
   value       = aws_efs_file_system.main.*.dns_name
 }
 
+output "global_accelerator_dns_name" {
+  description = "DNS name of the AWS Global Accelerator"
+  value       = aws_globalaccelerator_accelerator.web.*.dns_name
+}
+
+output "global_accelerator_static_ip_addresses" {
+  description = "Static IP addresses associated with the AWS Global Accelerator"
+  value       = aws_globalaccelerator_accelerator.web.*.ip_sets
+}
+
 output "loadbalancer_dns_name" {
   description = "DNS name of the loadbalancer"
   value       = aws_lb.web.dns_name

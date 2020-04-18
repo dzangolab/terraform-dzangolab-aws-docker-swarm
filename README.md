@@ -43,6 +43,8 @@ This terraform module creates a Docker Swarm cluster using AWS EC2 instances. It
 | Name | Description |
 |------|-------------|
 | efs\_dns\_name | DNS name of the provisioned AWS EFS |
+| global\_accelerator\_dns\_name | DNS name of the AWS Global Accelerator |
+| global\_accelerator\_static\_ip\_addresses | Static IP addresses associated with the AWS Global Accelerator |
 | loadbalancer\_dns\_name | DNS name of the loadbalancer |
 | swarm\_manager\_ips | The manager nodes public ipv4 adresses |
 | swarm\_manager\_ips\_private | The manager nodes private ipv4 adresses |
