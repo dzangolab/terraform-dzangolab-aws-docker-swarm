@@ -12,7 +12,7 @@ locals {
 
 resource "aws_key_pair" "default" {
   key_name   = var.key_pair_name
-  public_key = file(var.key_path)
+  public_key = file("${var.private_key_path}.pub")
 }
 
 resource "aws_vpc" "main" {
@@ -130,10 +130,11 @@ resource "aws_instance" "manager" {
   }
 
   connection {
-    host    = coalesce(self.public_ip, self.private_ip)
-    type    = "ssh"
-    user    = var.ssh_user
-    timeout = var.connection_timeout
+    host        = coalesce(self.public_ip, self.private_ip)
+    type        = "ssh"
+    user        = var.ssh_user
+    private_key = file(var.private_key_path)
+    timeout     = var.connection_timeout
   }
 
   provisioner "remote-exec" {
@@ -166,10 +167,11 @@ resource "aws_instance" "worker" {
   }
 
   connection {
-    host    = coalesce(self.public_ip, self.private_ip)
-    type    = "ssh"
-    user    = var.ssh_user
-    timeout = var.connection_timeout
+    host        = coalesce(self.public_ip, self.private_ip)
+    type        = "ssh"
+    user        = var.ssh_user
+    private_key = file(var.private_key_path)
+    timeout     = var.connection_timeout
   }
 
   provisioner "remote-exec" {
