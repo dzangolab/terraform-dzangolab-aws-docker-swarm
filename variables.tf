@@ -23,9 +23,9 @@ variable "key_pair_name" {
   description = "The name for the key pair"
 }
 
-variable "key_path" {
-  description = "SSH public key path for key pair"
-  default     = "~/.ssh/id_rsa.pub"
+variable "private_key_path" {
+  description = "SSH private key path for ssh connection."
+  default     = "~/.ssh/id_rsa"
 }
 
 variable "ssh_public_keys" {

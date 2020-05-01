@@ -25,8 +25,8 @@ This terraform module creates a Docker Swarm cluster using AWS EC2 instances. It
 | env | The environment of the current deployment | `any` | n/a | yes |
 | gluster\_volume\_size | Size of the gluster volume in GiBs. | `number` | `1` | no |
 | key\_pair\_name | The name for the key pair | `any` | n/a | yes |
-| key\_path | SSH public key path for key pair | `string` | `"~/.ssh/id_rsa.pub"` | no |
 | manager\_instance\_type | Manager instance type | `string` | `"t3a.large"` | no |
+| private\_key\_path | SSH private key path for ssh connection. | `string` | `"~/.ssh/id_rsa"` | no |
 | ssh\_public\_keys | SSH public keys to add to instances | `string` | `""` | no |
 | ssh\_user | User for logging into nodes (ansible) | `string` | `"ubuntu"` | no |
 | subnets | A map of availability zones to CIDR blocks, which will be set up as subnets. | `map(string)` | <pre>{<br>  "ap-southeast-1a": "192.168.0.0/26",<br>  "ap-southeast-1b": "192.168.0.64/26",<br>  "ap-southeast-1c": "192.168.0.128/26"<br>}</pre> | no |
