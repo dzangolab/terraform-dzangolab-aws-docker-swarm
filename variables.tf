@@ -14,8 +14,8 @@ variable "eip_allocation_id" {
 // Connection settings
 //-------------------------------------------------------------------
 variable "connect_via_private_address" {
-  description = "Whether connection to the servers should be made via the private ip address (true) or the public ip address (falseTimeout for connection to servers"
-  default     = "false"
+  description = "Whether connection to the servers should be made via the private ip address (true) or the public ip address (false)"
+  default     = false
 }
 
 variable "connection_timeout" {

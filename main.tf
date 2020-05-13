@@ -130,7 +130,7 @@ resource "aws_instance" "manager" {
   }
 
   connection {
-    host        = "{{ connect_via_private_address ? self.private_ip : self.public_ip }}"
+    host        = var.connect_via_private_address ? self.private_ip : self.public_ip
     type        = "ssh"
     user        = var.ssh_user
     private_key = file(var.private_key_path)
@@ -167,7 +167,7 @@ resource "aws_instance" "worker" {
   }
 
   connection {
-    host        = "{{ connect_via_private_address ? self.private_ip : self.public_ip }}"
+    host        = var.connect_via_private_address ? self.private_ip : self.public_ip
     type        = "ssh"
     user        = var.ssh_user
     private_key = file(var.private_key_path)
