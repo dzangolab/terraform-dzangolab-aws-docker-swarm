@@ -223,7 +223,7 @@ resource "null_resource" "ansible_inventory_file" {
   }
 
   provisioner "local-exec" {
-    command = "echo \"${data.template_file.ansible_inventory.rendered}\" > \"${var.env}\""
+    command = "echo \"${data.template_file.ansible_inventory.rendered}\" > \"${var.env}\".ini"
   }
 
   depends_on = [aws_eip_association.eip_association]
