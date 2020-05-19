@@ -83,6 +83,14 @@ resource "aws_ebs_volume" "ebs_volume" {
   availability_zone = aws_instance.manager[0].availability_zone
   count             = var.enable_gluster ? var.swarm_manager_count : 0
   size              = var.gluster_volume_size
+  tags = {
+    Name = format(
+      "%s-%s-%02d",
+      var.swarm_name,
+      "gluster-volume",
+      count.index + 1
+    )
+  }
 }
 
 resource "aws_volume_attachment" "ebs_attachment" {
