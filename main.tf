@@ -129,7 +129,17 @@ resource "aws_instance" "manager" {
     "Node Type" = "${var.swarm_name}-swarm-manager"
   }
 
-  root_block_device = {
+  volume_tags = {
+    Name = format(
+      "%s-%s-%s-%02d",
+      var.swarm_name,
+      var.swarm_manager_name,
+      "root-volume",
+      count.index + 1
+    )
+  }
+
+  root_block_device {
     volume_size           = var.manager_volume_size
     volume_type           = var.manager_volume_type
     delete_on_termination = var.manager_volume_delete_on_termination
@@ -170,6 +180,16 @@ resource "aws_instance" "worker" {
       count.index + 1
     )
     "Node Type" = "${var.swarm_name}-swarm-worker"
+  }
+
+  volume_tags = {
+    Name = format(
+      "%s-%s-%s-%02d",
+      var.swarm_name,
+      var.swarm_manager_name,
+      "root-volume",
+      count.index + 1
+    )
   }
 
   root_block_device {
