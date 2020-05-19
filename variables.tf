@@ -62,6 +62,21 @@ variable "manager_instance_type" {
   default     = "t3a.large"
 }
 
+variable "manager_volume_delete_on_termination" {
+  description = "Whether root volume should be destroyed on manager instance termination"
+  default     = true
+}
+
+variable "manager_volume_size" {
+  description = "The size of root volume of manager instance in gibibytes (GiB)."
+  default     = 8
+}
+
+variable "manager_volume_type" {
+  description = "The type of root volume of manager intances"
+  default     = "gp2"
+}
+
 variable "subnet_main_cidr" {
   default = "192.168.0.0/24"
 }
@@ -98,6 +113,21 @@ variable "worker_instance_type" {
   default     = "t3a.large"
 }
 
+variable "worker_volume_delete_on_termination" {
+  description = "Whether root volume should be destroyed on worker instance termination"
+  default     = true
+}
+
+variable "worker_volume_size" {
+  description = "The size of root volume of worker instance in gibibytes (GiB)."
+  default     = 8
+}
+
+variable "worker_volume_type" {
+  description = "The type of root volume of worker intances"
+  default     = "gp2"
+}
+
 //-------------------------------------------------------------------
 // EFS settings
 //-------------------------------------------------------------------
@@ -117,6 +147,6 @@ variable "enable_gluster" {
 }
 
 variable "gluster_volume_size" {
-  description = "Size of the gluster volume"
+  description = "Size of the gluster volume in gibibytes (GiB)"
   default     = 1
 }
