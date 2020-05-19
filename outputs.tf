@@ -5,7 +5,7 @@ output "efs_dns_name" {
 
 output "swarm_manager_ips" {
   description = "The manager nodes public ipv4 adresses"
-  value = local.manager_public_ip_list
+  value       = local.manager_public_ip_list
 }
 
 output "swarm_manager_ips_private" {
