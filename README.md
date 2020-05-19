@@ -48,10 +48,11 @@ This terraform module creates a Docker Swarm cluster using AWS EC2 instances. It
 
 | Name | Description |
 |------|-------------|
+| ansible\_inventory | Content of Ansible inventory |
 | efs\_dns\_name | DNS name of the provisioned AWS EFS |
-| swarm\_manager\_ips | The manager nodes public ipv4 adresses |
-| swarm\_manager\_ips\_private | The manager nodes private ipv4 adresses |
-| swarm\_worker\_ips | The worker nodes public ipv4 adresses |
-| swarm\_worker\_ips\_private | The worker nodes private ipv4 adresses |
+| swarm\_manager\_private\_ips | The manager nodes private ipv4 adresses |
+| swarm\_manager\_public\_ips | The manager nodes public ipv4 adresses |
+| swarm\_worker\_private\_ips | The worker nodes private ipv4 adresses |
+| swarm\_worker\_public\_ips | The worker nodes public ipv4 adresses |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
