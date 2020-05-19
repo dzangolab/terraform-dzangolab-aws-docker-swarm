@@ -248,8 +248,8 @@ data "template_file" "ansible_inventory" {
 
   vars = {
     env                 = var.env
-    managers            = join("\n", local.manager_public_ip_list)
-    workers             = join("\n", aws_instance.worker.*.public_ip)
+    managers            = join("\n", var.connect_via_private_address ? aws_instance.manager.*.private_ip : local.manager_public_ip_list)
+    workers             = join("\n", var.connect_via_private_address ? aws_instance.worker.*.private_ip : aws_instance.worker.*.public_ip)
     manager_private_ips = join("\n", aws_instance.manager.*.private_ip)
     efs_host            = var.enable_efs ? "efs dns_name=${aws_efs_mount_target.main[0].dns_name}" : ""
   }
