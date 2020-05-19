@@ -129,11 +129,11 @@ resource "aws_instance" "manager" {
     "Node Type" = "${var.swarm_name}-swarm-manager"
   }
 
-  root_block_device = [{
+  root_block_device = {
     volume_size           = var.manager_volume_size
     volume_type           = var.manager_volume_type
     delete_on_termination = var.manager_volume_delete_on_termination
-  }]
+  }
 
   connection {
     host        = var.connect_via_private_address ? self.private_ip : self.public_ip
@@ -172,11 +172,11 @@ resource "aws_instance" "worker" {
     "Node Type" = "${var.swarm_name}-swarm-worker"
   }
 
-  root_block_device = [{
+  root_block_device {
     volume_size           = var.worker_volume_size
     volume_type           = var.worker_volume_type
     delete_on_termination = var.worker_volume_delete_on_termination
-  }]
+  }
 
   connection {
     host        = var.connect_via_private_address ? self.private_ip : self.public_ip
