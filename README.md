@@ -23,9 +23,12 @@ This terraform module creates a Docker Swarm cluster using AWS EC2 instances. It
 | enable\_efs | Set to true in order to enable EFS | `bool` | `false` | no |
 | enable\_gluster | Set to true in order to enable gluster | `bool` | `false` | no |
 | env | The environment of the current deployment | `any` | n/a | yes |
-| gluster\_volume\_size | Size of the gluster volume | `number` | `1` | no |
+| gluster\_volume\_size | Size of the gluster volume in gibibytes (GiB) | `number` | `1` | no |
 | key\_pair\_name | The name for the key pair | `any` | n/a | yes |
 | manager\_instance\_type | Manager instance type | `string` | `"t3a.large"` | no |
+| manager\_volume\_delete\_on\_termination | Whether root volume should be destroyed on manager instance termination | `bool` | `true` | no |
+| manager\_volume\_size | The size of root volume of manager instance in gibibytes (GiB). | `number` | `8` | no |
+| manager\_volume\_type | The type of root volume of manager intances | `string` | `"gp2"` | no |
 | private\_key\_path | SSH private key path for ssh connection. | `string` | `"~/.ssh/id_rsa"` | no |
 | ssh\_public\_keys | SSH public keys to add to instances | `string` | `""` | no |
 | ssh\_user | User for logging into nodes (ansible) | `string` | `"ubuntu"` | no |
@@ -37,6 +40,9 @@ This terraform module creates a Docker Swarm cluster using AWS EC2 instances. It
 | swarm\_worker\_name | Name to use for naming worker nodes | `string` | `"worker"` | no |
 | vpc\_cidr | n/a | `string` | `"192.168.0.0/24"` | no |
 | worker\_instance\_type | Worker instance type | `string` | `"t3a.large"` | no |
+| worker\_volume\_delete\_on\_termination | Whether root volume should be destroyed on worker instance termination | `bool` | `true` | no |
+| worker\_volume\_size | The size of root volume of worker instance in gibibytes (GiB). | `number` | `8` | no |
+| worker\_volume\_type | The type of root volume of worker intances | `string` | `"gp2"` | no |
 
 ## Outputs
 

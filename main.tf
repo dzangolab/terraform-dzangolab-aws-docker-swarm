@@ -82,7 +82,7 @@ resource "aws_route_table_association" "route" {
 resource "aws_ebs_volume" "ebs_volume" {
   availability_zone = aws_instance.manager[0].availability_zone
   count             = var.enable_gluster ? var.swarm_manager_count : 0
-  size              = 1
+  size              = var.gluster_volume_size
 }
 
 resource "aws_volume_attachment" "ebs_attachment" {
@@ -129,6 +129,12 @@ resource "aws_instance" "manager" {
     "Node Type" = "${var.swarm_name}-swarm-manager"
   }
 
+  root_block_device = [{
+    volume_size           = var.manager_volume_size
+    volume_type           = var.manager_volume_type
+    delete_on_termination = var.manager_volume_delete_on_termination
+  }]
+
   connection {
     host        = var.connect_via_private_address ? self.private_ip : self.public_ip
     type        = "ssh"
@@ -165,6 +171,12 @@ resource "aws_instance" "worker" {
     )
     "Node Type" = "${var.swarm_name}-swarm-worker"
   }
+
+  root_block_device = [{
+    volume_size           = var.worker_volume_size
+    volume_type           = var.worker_volume_type
+    delete_on_termination = var.worker_volume_delete_on_termination
+  }]
 
   connection {
     host        = var.connect_via_private_address ? self.private_ip : self.public_ip
